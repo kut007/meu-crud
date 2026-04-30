@@ -3,11 +3,11 @@ require_once __DIR__ . '/../config/db.php';
 
 function listar_tarefas() : array
 {
-    $sql "SELECT * FROM tarefas ORDER BY id DESC";
-    return db()->query($sql)->fetchAll();
+   $sql = "SELECT * FROM tarefas ORDER BY id DESC";
+return db()->query($sql)->fetchAll();
 }
 
-function criar_tarefas(string $titulo, ?string %descricao, string $status) : int
+function criar_tarefa(string $titulo, ?string $descricao, string $status): int
 {
     $sql = "INSERT INTO tarefas (titulo, descricao, status VALUES (?,?,?)";
     $stmt = db()->prepare($sql);
@@ -31,10 +31,10 @@ function atualizar_tarefa(int $id, string $titulo, ?string $descricao, string $s
     return $stmt->execute([$titulo, $descricao, $status, $id]); 
 }
 
-function excluir_tarefa(int $id):
+function excluir_tarefa(int $id) 
 {
-$sql = "DELETE FROM tarefas WHERE id = ?";
-$stmt = db()->prepare($sql);
-return $stmt->execute([$id]);
+    $sql = "DELETE FROM tarefas WHERE id = ?";
+    $stmt = db()->prepare($sql);
+    return $stmt->execute([$id]);
 }
 ?>
